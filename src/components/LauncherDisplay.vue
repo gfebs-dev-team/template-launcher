@@ -6,94 +6,120 @@
 </script>
 
 <template>
-    <body id="launcher-body">
-        <LauncherHeader/>
 
-        <div id="launcher-names">
-            <p id="school-name" class="text-margins"> Financial Management School </p>
-            <p id="course-name" class="text-margins"> GFEBS L210E Financials Process Overview </p>
-        </div>
+        
+        <div class="container">
+            <LauncherHeader />     
+            <div class="content">      
+                <img src="../assets/icons/crest.svg">
+                <div> 
+                    <p class="school text-margins"> FINANCIAL MANAGEMENT SCHOOL </p>
+                    <p class="course text-margins"> GFEBS L210E Financials Process Overview </p>
+                    <p class="next-steps text-margins"> After completing this course, review all the modules and
+                        test for the GFEBS L210E Financials Process Overview Post Assessment. </p>
+                    <p id="note" class="text-margins"> Note: This will launch module content and take you to an external .Mil website. </p>
+                </div></div>
+                    
+                <div class="button-container">
+                    <div class="button-grid">
 
-        <img id="course-icon" src="./icons/Shield-01.png">
+                    <CourseButton class="large-button"/>
+                    <div class="smaller-buttons"><CourseButton/>
+                    <CourseButton/>
+                    <CourseButton/>
+                    <CourseButton/>
+                </div>  
+                </div>
+            </div>
+            </div>
 
-        <div id="launcher-notes">
-            <p id="next-steps" class="text-margins"> After completing this course, review all the modules and
-             test for the <br> GFEBS L210E Financials Process Overview Post Assessment. </p>
-            <p id="note" class="text-margins"> Note: This will launch module content and take you to an external .Mil website. </p>
-        </div>
+              
 
-        <div id="button-grid">
-            <CourseButton/>
-            <CourseButton/>
-            <CourseButton/>
-            <CourseButton/>
-            <CourseButton/>
-            <CourseButton/>
-        </div>
-    </body>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
-#launcher-body {
-    width: 70%;
-    height: 95%;
-    margin: auto;
-    background: teal;
-    justify-content: center;
+
+.container{
+   
+    
+    //display: flex;
+   // justify-content: center;
+    width: 100vw;
+    height: auto;
+  
+ 
 }
 
-#course-icon {
-    display: block;
-    margin: auto;
-    width: 25%;
-    height: 25%;
-}
+.content {
 
-#button-grid {
-    display: grid;
-    grid-template-columns: 250px 250px;
+    display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    align-content: center;
-    padding: 30px 0px 30px 0px;
+    text-align: center;  
+    //flex-wrap: wrap;
+padding:0 2rem;
+  //  margin: 3rem;
+}
+.content img  {
+
+ height: 250px;
+ margin: 2rem;
+}
+
+
+
+.button-container {
+   height: 100%;
+    width: 100%;
+    display: flex;
+
+    //align-items: center;
+    justify-content: center;
+   // flex-wrap: wrap;
+}
+
+.button-grid {
+   display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
  }
 
-#launcher-names {
-    font-family: sans-serif;
-    font-weight: bold;
-    text-align: center;
+ .large-button{
+
+ }
+
+.smaller-buttons {
+
 }
 
 .text-margins {
     margin: 5px auto 5px auto;
 }
 
-#school-name {
+.school {
     font-size: 32px;
     color: white;
 }
 
-#course-name {
+.course {
+    font-weight: bold;
     font-size: 24px;
-    color: gold;
+    color: var(--color-accent);
+    line-height: 120%;
 }
 
-#launcher-notes {
-    font-family: sans-serif;
-    text-align: center;
-}
-
-#next-steps {
+.next-steps {
     font-size: 16px;
     color: white;
 }
 
 #note {
     font-size: 12px;
-    font-weight: bold;
-    color:gold;
+    font-weight:100;
+    color: --color-accent;
+    line-height: 250%;
 }
 
 </style>
+//git orgin merge

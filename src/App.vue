@@ -13,7 +13,7 @@
 <style>
 
 html {
-  background-color: darkslategrey;
+  background-color: #0B1528;
 }
 
 </style>

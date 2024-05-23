@@ -1,0 +1,85 @@
+/* semantic color variables for this project */
+:root {
+  --color-background: rgb(20, 35, 66);
+  --color-background-mute: rgb(23, 35, 59);
+  --color-background-dark: rgb(11, 21, 40);
+  --color-accent: rgb(244, 188, 58);
+  --color-accent-light: rgb(58, 75, 111);
+  --color-text: rgb(11, 14, 20);
+  --color-text-dark: rgb(231, 235, 243);
+  --color-button-light: rgb(222, 228, 241);
+  --color-primary: rgb(145, 160, 190);
+}
+
+* *,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  font-size: 16px;
+  position: relative;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--color-background-dark);
+  transition: color 0.5s, background-color 0.5s;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+  font-size: 1rem;
+}
+@media only screen and (max-width: 1024px) {
+  p {
+    font-size: 0.88rem;
+  }
+}
+
+li {
+  font-size: 1rem;
+}
+@media only screen and (max-width: 1024px) {
+  li {
+    font-size: 0.88rem;
+  }
+}
+
+#app {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  color: var(--color-text-dark);
+}
+
+.title {
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 130%;
+  letter-spacing: 0.1rem;
+}
+
+.heading {
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+}
+
+.copy {
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 2.12rem;
+  color: var(--color-accent);
+  line-height: 130%;
+}/*# sourceMappingURL=main.css.map */

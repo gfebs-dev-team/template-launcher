@@ -19,7 +19,7 @@ function launchLesson () {
 
 #course-button {
     color:white;
-    background: cadetblue;
+    background: var(--color-background);
     justify-self: center;
     text-align: center;
     font-family: sans-serif;
@@ -31,6 +31,7 @@ function launchLesson () {
     border-radius: 10px;
     padding: 10px 0px 10px 0px;
     margin: 10px;
+    color: var(--color-accent);
 }
 
 </style>
