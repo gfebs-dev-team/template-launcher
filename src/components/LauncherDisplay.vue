@@ -45,8 +45,6 @@ const buttons = [
     height: 100vh;
     overflow-x:hidden;
     overflow-y: auto;
-
-
 }
 .content {
     display: flex;

@@ -10,6 +10,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "pipwerks-scorm-api-wrapper": "^0.1.2",
     "vue": "^3.3.4"
   },
   "devDependencies": {
