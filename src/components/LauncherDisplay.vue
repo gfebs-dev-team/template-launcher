@@ -1,16 +1,16 @@
 <script setup>
     import CourseButton from "./CourseButton.vue";
     import LauncherHeader from "./LauncherHeader.vue";
-    import { ref } from "vue";
+    //import { ref } from "vue";
 
-const buttons = ref([
-    { id: 1, courseName: 'INTRODUCTION' },
-    { id: 2, courseName: 'MANAGE GENERAL LEDGER ACCOUNTS' },
-    { id: 3, courseName: 'PROCESSING JOURNAL VOUCHERS' },
-    { id: 4, courseName: 'PERFORM CASH BALANCING' },
-    { id: 5, courseName: 'PERFORM PERIOD-END CLOSE' },
-    { id: 6, courseName: 'PERFORM YEAR-END CLOSE' },
-])
+const buttons = [
+    { id: 1, courseName: '1. INTRODUCTION' },
+    { id: 2, courseName: '2. MANAGE GENERAL LEDGER ACCOUNTS' },
+    { id: 3, courseName: '3. PROCESSING JOURNAL VOUCHERS' },
+    { id: 4, courseName: '4. PERFORM CASH BALANCING' },
+    { id: 5, courseName: '5. PERFORM PERIOD-END CLOSE' },
+    { id: 6, courseName: '6. PERFORM YEAR-END CLOSE' },
+]
 
 </script>
 
@@ -20,11 +20,11 @@ const buttons = ref([
             <div class="content">      
                 <img src="../assets/icons/crest.svg">
                 <div class="text-container"> 
-                    <p class="school text-margins"> FINANCIAL MANAGEMENT SCHOOL </p>
-                    <p class="course text-margins"> GFEBS L210E Financials Process Overview </p>
-                    <p class="next-steps text-margins"> After completing this course, review all the modules and
+                    <p class="school"> FINANCE AND COMPTROLLER SCHOOL </p>
+                    <p class="course"> GFEBS L210E FINANCIALS PROCESS OVERVIEW</p>
+                    <p class="next-steps"> After completing this course, review all the modules and
                         test for the GFEBS L210E Financials Process Overview Post Assessment. </p>
-                    <p class="note text-margins"> Note: This will launch module content and take you to an external .Mil website. </p>
+                    <p class="note"> Note: This will launch module content and take you to an external .Mil website. </p>
                 </div>
             </div>
            
@@ -43,36 +43,38 @@ const buttons = ref([
 .container{
     width: 100vw;
     height: 100vh;
-    overflow: auto;
+    overflow-x:hidden;
+    overflow-y: auto;
+
+
 }
 .content {
     display: flex;
     justify-content: center;    
     margin: 5rem 5rem 0 5rem;
+    @media only screen and (max-width: 550px) {
+        flex-direction: column;
+       margin: 3rem 5rem 0 5rem;
+    }
 }
 .content img  {
     height: 250px;
     margin-top: 2rem;
     margin-bottom: 1rem;
+    @media only screen and (max-width: 550px) {
+        margin: 0 0 1em 0;   
+    }
 }
 .text-container{
     text-align: center;
     margin: 2rem 0 2rem 1rem;
-    max-width: 50%;
-}
-.top-button {
-    grid-column: 1 / span 2;
-    justify-self: center;
-    margin: 0 2rem .5rem;
-    padding: 0 10rem;
-        @media only screen and (max-width: 1024px) {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: .7rem 2rem;
-            margin: .5rem;
+    max-width: 100%;
+    @media only screen and (max-width: 550px) {
+        margin: 0 0 1rem 0;
+        width:100vw;
     }
 }
+
 .button-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
@@ -81,34 +83,33 @@ const buttons = ref([
     margin: 0 auto;
     max-width: 900px;
 
-  
-
     @media only screen and (max-width: 1024px) {
         display:flex;
         flex-wrap: wrap;
         justify-content: center;
         width: 100vw;
+        margin-bottom: 2rem;
     }
-  
+    @media only screen and (max-width: 550px) {
+        margin-bottom: 2rem;
+    }
 }
-.button-group {  
-    grid-column: 1; 
-    grid-row: 2;   
 
-
-}
-.text-margins {
-    margin: 5px auto 5px auto;
-}
 .school {
     font-size: $m4;
     color: white;
     line-height: 1.2;
     margin-bottom: 1rem;
     font-weight: 700;
-    @media only screen and (max-width: 1024px) {
-    font-size: $m3;
-  }
+        @media only screen and (max-width: 1024px) {
+        font-size: $m3;
+        }
+        @media only screen and (max-width: 550px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+}
 }
 .course {
     font-weight: bold;
@@ -116,9 +117,9 @@ const buttons = ref([
     color: var(--color-accent);
     line-height: 1.2;
     margin-bottom: 1rem;
-    @media only screen and (max-width: 1024px) {
-    font-size: $m0;
-  }
+        @media only screen and (max-width: 1024px) {
+        font-size: $m0;
+        }
 }
 .next-steps {
     font-size: $m-1;
@@ -132,7 +133,5 @@ const buttons = ref([
     font-size: $m-3;
     font-weight: 100;
     line-height: 1.5;
-
-
 }
 </style>
