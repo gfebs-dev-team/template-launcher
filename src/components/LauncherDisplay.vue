@@ -12,9 +12,6 @@ const buttons = ref([
     { id: 6, courseName: 'PERFORM YEAR-END CLOSE' },
 ])
 
-
-
-
 </script>
 
 <template>
@@ -57,8 +54,6 @@ const buttons = ref([
     height: 250px;
     margin-top: 2rem;
     margin-bottom: 1rem;
-
-  
 }
 .text-container{
     text-align: center;
@@ -68,14 +63,14 @@ const buttons = ref([
 .top-button {
     grid-column: 1 / span 2;
     justify-self: center;
-    margin: 0 2rem 1rem;
+    margin: 0 2rem .5rem;
     padding: 0 10rem;
         @media only screen and (max-width: 1024px) {
             display: flex;
             align-items: center;
             justify-content: center;
             padding: .7rem 2rem;
-            margin: 0;
+            margin: .5rem;
     }
 }
 .button-container {
@@ -85,14 +80,14 @@ const buttons = ref([
     align-items: center; 
     margin: 0 auto;
     max-width: 900px;
+
   
 
     @media only screen and (max-width: 1024px) {
-display:flex;
-flex-wrap: wrap;
-justify-content: center;
-width: 100vw;
-
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100vw;
     }
   
 }

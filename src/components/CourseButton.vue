@@ -29,7 +29,7 @@ button {
     border: none;
     border-radius: 10px;
     padding: .7rem 2rem;
-    margin: 1rem;
+    margin: .5rem;
     color: var(--color-accent);
     line-height: 1.5;
     min-height: 4rem;
