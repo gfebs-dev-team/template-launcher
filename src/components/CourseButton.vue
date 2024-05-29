@@ -1,37 +1,44 @@
 <script setup>
 
-function launchLesson () {
+defineProps({
+    courseName: String,
+    activeName: String
+  })
 
+function openWindow () {
     const windowFeatures ="resizable=0, width=1024, height=800";
-
     window.open("", "_blank", windowFeatures);
 }
 
+
+
 </script>
 
-<template>
-    <button id="course-button" @click="launchLesson"> 
-    Sample Course Name
-    </button>
+
+    <template>
+  <button @click="openWindow" :class="{active: courseName == activeName }">{{ courseName }} </button>
 </template>
 
-<style scoped>
 
-#course-button {
-    color:white;
+
+<style scoped lang="scss">
+
+button {
     background: var(--color-background);
-    justify-self: center;
-    text-align: center;
-    font-family: sans-serif;
-    font-size: 16px;
     font-weight: bold;
-    height: 32px;
-    width: 230px;
     border: none;
     border-radius: 10px;
-    padding: 10px 0px 10px 0px;
-    margin: 10px;
+    padding: .7rem 2rem;
+    margin: 1rem;
     color: var(--color-accent);
+    line-height: 1.5;
+    min-height: 4rem;
+    
+    @media only screen and (max-width: 1024px) {
+    font-size: $m-2;
+    width: 20rem;
+    margin: .5rem;
+  }
 }
 
 </style>
