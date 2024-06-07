@@ -24,10 +24,13 @@ function getSession(time) {
   }
 }
 
+const terminationEvent = "onpagehide" in self ? "pagehide" : "unload";
+
 onMounted(() => {
   SCORM.init()
   setSession('start')
   SCORM.set('cmi.success_status', 'passed')
+  window.addEventListener(terminationEvent, quit);
 })
 
 const lastButtonClicked = ref(null)
