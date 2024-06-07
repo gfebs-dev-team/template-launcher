@@ -4,13 +4,14 @@ import LauncherHeader from '/src/components/LauncherHeader.vue'
 
 defineEmits(['exit', 'openWindow'])
 
+// COURSE NAME AND LAUNCHERS ADDED BELOW
 const buttons = [
-  { id: 1, courseName: '1. INTRODUCTION', link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/GFEBSLegacy/L210E/1IntroductionToFinancials/html/index.html' },
-  { id: 2, courseName: '2. MANAGE GENERAL LEDGER ACCOUNTS', link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/GFEBSLegacy/L210E/2ManageGeneralLedgerAccounts/html/index.html' },
-  { id: 3, courseName: '3. PROCESSING JOURNAL VOUCHERS', link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/GFEBSLegacy/L210E/3ProcessingJournalVouchers/html/index.html' },
-  { id: 4, courseName: '4. PERFORM CASH BALANCING', link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/GFEBSLegacy/L210E/4PerformCashBalancing/html/index.html' },
-  { id: 5, courseName: '5. PERFORM PERIOD-END CLOSE', link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/GFEBSLegacy/L210E/5PerformingPeriodEndClose/html/index.html' },
-  { id: 6, courseName: '6. PERFORM YEAR-END CLOSE', link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/GFEBSLegacy/L210E/6PerformingYearEndClose/html/index.html' }
+  { id: 1, courseName: '1. INTRODUCTION', link: '' },
+  { id: 2, courseName: '2. COURSE NAME', link: '' },
+  { id: 3, courseName: '3. COURSE NAME', link: '' },
+  { id: 4, courseName: '4. COURSE NAME', link: '' },
+  { id: 5, courseName: '5. COURSE NAME', link: '' },
+  { id: 6, courseName: '6. COURSE NAME', link: '' }
 ]
 </script>
 
@@ -22,7 +23,8 @@ const buttons = [
       <img src="../assets/icons/crest.svg" />
       <div class="text-container">
         <p class="school">FINANCE AND COMPTROLLER SCHOOL</p>
-        <p class="course">GFEBS L210E FINANCIALS PROCESS OVERVIEW</p>
+        <!-- CHANGE COURSE NAME/CODE BELOW -->
+        <p class="course">GFEBS TEMPLATE LAUNCHER</p>
         <p class="next-steps">
           After completing this course, review all the modules and test for the GFEBS L210E
           Financials Process Overview Post Assessment.
@@ -40,8 +42,6 @@ const buttons = [
         v-bind="button"
         @openWindow="$emit('openWindow', button.id, button.link)"
       ></CourseButton>
-
-      <!-- <CourseButton v-for="button in buttons" :key="button.id" v-bind="button"></CourseButton> -->
     </div>
   </div>
 </template>

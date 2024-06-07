@@ -1,14 +1,10 @@
 <script setup>
 defineProps(['courseName', 'activeName', 'openWindow', 'id', 'link'])
-defineEmits(['openWindow'])//define function or action
-
+defineEmits(['openWindow'])
 </script>
 
 <template>
-  <button
-    @click="$emit('openWindow', id, link )"
-    :id="{ active: courseName == activeName }"
-  >
+  <button @click="$emit('openWindow', id, link)" :id="{ active: courseName == activeName }">
     {{ courseName }}
   </button>
 </template>
@@ -31,7 +27,6 @@ button {
     width: 20rem;
   }
 }
-
 button:first-child,
 button:last-child {
   grid-column: 1 / span 2;

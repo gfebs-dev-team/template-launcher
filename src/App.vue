@@ -24,13 +24,13 @@ function getSession(time) {
   }
 }
 
-const terminationEvent = "onpagehide" in self ? "pagehide" : "unload";
+const terminationEvent = 'onpagehide' in self ? 'pagehide' : 'unload'
 
 onMounted(() => {
   SCORM.init()
   setSession('start')
   SCORM.set('cmi.success_status', 'passed')
-  window.addEventListener(terminationEvent, quit);
+  window.addEventListener(terminationEvent, quit)
 })
 
 const lastButtonClicked = ref(null)
@@ -58,16 +58,16 @@ const quit = (complete) => {
   SCORM.set('cmi.session_time', session_time)
 
   SCORM.set('cmi.location', 0)
-  
+
   if (SCORM.get('cmi.completion_status') == 'incomplete') {
     SCORM.set('adl.nav.request', 'suspendAll')
   }
-  if(complete) {
-    SCORM.set('cmi.completion_status', 'complete');
-    SCORM.set('adl.nav.request','exit');
+  if (complete) {
+    SCORM.set('cmi.completion_status', 'complete')
+    SCORM.set('adl.nav.request', 'exit')
   }
-  
-SCORM.save()
+
+  SCORM.save()
   SCORM.quit()
 }
 
