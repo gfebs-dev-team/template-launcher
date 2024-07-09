@@ -1,51 +1,20 @@
 <script setup>
-
-defineProps({
-    courseName: String,
-    activeName: String
-  })
-
-function openWindow () {
-    const windowFeatures ="resizable=0, width=1024, height=800";
-    window.open("", "_blank", windowFeatures);
-}
-
+import { twMerge } from 'tailwind-merge'
+defineProps(['courseName', 'activeName', 'openWindow', 'id', 'link', 'className'])
+defineEmits(['openWindow']) //define function or action
 </script>
 
-    <template>
-  <button @click="openWindow" :class="{active: courseName == activeName }">{{ courseName }} </button>
+<template>
+  <button
+    :class="
+      twMerge(
+        'flex flex-1 items-center justify-center gap-2 rounded-md font-bold text-xs md:text-sm uppercase tracking-wide outline-0 transition active:translate-y-0.5 p-4 bg-spacecadet text-saffron md:w-full w-3/4 justify-self-center',
+        className
+      )
+    "
+    @click="$emit('openWindow', id, link)"
+    :id="{ active: courseName == activeName }"
+  >
+    {{ courseName }}
+  </button>
 </template>
-
-<style scoped lang="scss">
-
-button {
-    background: var(--color-background);
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    padding: .7rem 2rem;
-    margin: .25rem;
-    color: var(--color-accent);
-    line-height: 1.5;
-    min-height: 4rem;
-    
-        @media only screen and (max-width: 1024px) {
-            font-size: $m-2;
-            width: 20rem;
-  }
-}
-.top-button {
-    grid-column: 1 / span 2;
-    justify-self: center;
-    margin: 0 2rem .25rem;
-    padding: 0 10rem;
-        @media only screen and (max-width: 1024px) {
-            padding: .7rem 2rem;
-            margin: .5rem;
-        } 
-        @media only screen and (max-width: 550px) {
-            margin-bottom: .25em;
-        }
-}
-
-</style>
