@@ -7,7 +7,6 @@ const sessionTime = reactive({
   start: 0,
   end: 0
 })
-
 function setSession(time) {
   if (time == 'start') {
     sessionTime.start = new Date()
@@ -63,7 +62,7 @@ const quit = (complete) => {
     SCORM.set('adl.nav.request', 'suspendAll')
   }
   if (complete) {
-    SCORM.set('cmi.completion_status', 'complete')
+    SCORM.set('cmi.completion_status', 'completed')
     SCORM.set('adl.nav.request', 'exit')
   }
 

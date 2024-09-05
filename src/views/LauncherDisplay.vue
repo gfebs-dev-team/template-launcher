@@ -1,142 +1,93 @@
 <script setup>
 import CourseButton from '/src/components/CourseButton.vue'
-import LauncherHeader from '/src/components/LauncherHeader.vue'
+import AppHeader from '/src/components/AppHeader.vue'
 
 defineEmits(['exit', 'openWindow'])
 
-// COURSE NAME AND LAUNCHERS ADDED BELOW
 const buttons = [
-  { id: 1, courseName: '1. INTRODUCTION', link: '' },
-  { id: 2, courseName: '2. COURSE NAME', link: '' },
-  { id: 3, courseName: '3. COURSE NAME', link: '' },
-  { id: 4, courseName: '4. COURSE NAME', link: '' },
-  { id: 5, courseName: '5. COURSE NAME', link: '' },
-  { id: 6, courseName: '6. COURSE NAME', link: '' }
+  {
+    id: 1,
+    courseName: '1. INTRODUCTION',
+    link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/2024/L210E/1IntroductionToFinancials/index.html'
+  },
+  {
+    id: 2,
+    courseName: '2. MANAGE GENERAL LEDGER ACCOUNTS',
+    link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/2024/L210E/2ManageGeneralLedgerAccounts/index.html'
+  },
+  {
+    id: 3,
+    courseName: '3. PROCESSING JOURNAL VOUCHERS',
+    link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/2024/L210E/3ProcessingJournalVouchers/index.html'
+  },
+  {
+    id: 4,
+    courseName: '4. PERFORM CASH BALANCING',
+    link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/2024/L210E/4PerformCashBalancing/index.html'
+  },
+  {
+    id: 5,
+    courseName: '5. PERFORM PERIOD-END CLOSE',
+    link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/2024/L210E/5PerformingPeriodEndClose/index.html'
+  },
+  {
+    id: 6,
+    courseName: '6. PERFORM YEAR-END CLOSE',
+    link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/2024/L210E/6PerformingYearEndClose/index.html'
+  }
 ]
 </script>
 
 <template>
-  <div class="container">
-    <LauncherHeader isexit="true" @exit="$emit('exit')" />
+  <section class="flex h-full md:h-dvh flex-col bg-oxfordblue md:gap-0">
+    <AppHeader :isexit="true" @exit="$emit('exit')"></AppHeader>
+    <!--PAGE CONTENT-->
+    <div
+      class="flex h-full flex-col justify-center gap-6 scroll-auto bg-oxfordblue p-2 md:w-screen md:items-center md:gap-8"
+    >
+      <div
+        class="space-y-4 h-full gap-4 md:h-auto p-2 justify-center flex flex-col md:flex-row md:max-w-screen-lg items-center"
+      >
+        <img
+          class="w-1/2 md:h-0 md:min-h-full md:block pt-4 md:p-0"
+          src="/assets/crest.svg"
+          alt="crest"
+        />
+        <div class="flex flex-col items-center justify-center gap-4 md:gap-2 p-4">
+          <h1
+            class="uppercase text-lg md:text-2xl font-bold text-aliceblue tracking-wider text-balance text-center"
+          >
+            Financial Management School
+          </h1>
+          <h2
+            class="uppercase text-sm md:text-lg font-bold text-saffron tracking-wider text-balance text-center"
+          >
+            GFEBS Essentials Course
+          </h2>
+          <p class="text-sm text-center text-aliceblue md:text-base">
+            After completing this course, review all the modules and test for the GFEBS L210E
+            Financials Process Overview Post Assessment.
+          </p>
+          <p class="md:text-sm text-center text-xs font-bold text-coolgrey">
+            NOTE: This will launch module content and take you to an external .Mil website.
+          </p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 h-full md:h-auto items-center flex-wrap gap-4">
+        <CourseButton
+          v-for="button in buttons"
+          :className="
+            button.id == 1 || (buttons.length % 2 == 0 && button.id == buttons.length)
+              ? 'md:col-span-2 md:w-1/2 justify-self-center'
+              : ''
+          "
+          :key="button.id"
+          v-bind="button"
+          @openWindow="$emit('openWindow', button.id, button.link)"
+        />
 
-    <div class="content">
-      <img src="../assets/icons/crest.svg" />
-      <div class="text-container">
-        <p class="school">FINANCE AND COMPTROLLER SCHOOL</p>
-        <!-- CHANGE COURSE NAME/CODE BELOW -->
-        <p class="course">GFEBS TEMPLATE LAUNCHER</p>
-        <p class="next-steps">
-          After completing this course, review all the modules and test for the GFEBS L210E
-          Financials Process Overview Post Assessment.
-        </p>
-        <p class="note">
-          Note: This will launch module content and take you to an external .Mil website.
-        </p>
+        <!-- <CourseButton v-for="button in buttons" :key="button.id" v-bind="button"></CourseButton> -->
       </div>
     </div>
-
-    <div class="button-container">
-      <CourseButton
-        v-for="button in buttons"
-        :key="button.id"
-        v-bind="button"
-        @openWindow="$emit('openWindow', button.id, button.link)"
-      ></CourseButton>
-    </div>
-  </div>
+  </section>
 </template>
-
-<style scoped lang="scss">
-.container {
-  width: 100vw;
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-.content {
-  display: flex;
-  justify-content: center;
-  margin: 5rem 5rem 0 5rem;
-  @media only screen and (max-width: 550px) {
-    flex-direction: column;
-    margin: 3rem 5rem 0 5rem;
-  }
-}
-.content img {
-  height: 250px;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  @media only screen and (max-width: 550px) {
-    margin: 0 0 1em 0;
-  }
-}
-.text-container {
-  text-align: center;
-  margin: 2rem 0 2rem 1rem;
-  max-width: 100%;
-  @media only screen and (max-width: 550px) {
-    margin: 0 0 1rem 0;
-    width: 100vw;
-  }
-}
-
-.button-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-  align-items: center;
-  margin: 0 auto;
-  max-width: 900px;
-
-  @media only screen and (max-width: 1024px) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100vw;
-    margin-bottom: 2rem;
-  }
-  @media only screen and (max-width: 550px) {
-    margin-bottom: 2rem;
-  }
-}
-
-.school {
-  font-size: $m4;
-  color: white;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  @media only screen and (max-width: 1024px) {
-    font-size: $m3;
-  }
-  @media only screen and (max-width: 550px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-}
-.course {
-  font-weight: bold;
-  font-size: $m2;
-  color: var(--color-accent);
-  line-height: 1.2;
-  margin-bottom: 1rem;
-  @media only screen and (max-width: 1024px) {
-    font-size: $m1;
-  }
-}
-.next-steps {
-  font-size: $m0;
-  color: white;
-  margin-bottom: 1rem;
-  @media only screen and (max-width: 1024px) {
-    font-size: $m-1;
-  }
-}
-.note {
-  font-size: $m-2;
-  font-weight: 100;
-  line-height: 1.5;
-}
-</style>

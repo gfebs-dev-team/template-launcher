@@ -24,6 +24,7 @@ header {
   border-style: none;
   color: white;
   padding: 7px 20px;
+  cursor: pointer;
 }
 #exit div {
   font-size: 0.8rem;
