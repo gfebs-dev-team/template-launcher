@@ -83,5 +83,5 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <LauncherDisplay @exit="quit(true)" @openWindow="openWindow" :courseData />
+  <LauncherDisplay @exit="quit(true)" @openWindow="openWindow" :courseData="courseData" />
 </template>
