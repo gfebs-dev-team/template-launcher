@@ -6,8 +6,7 @@ Internal boilerplate for creating GFEBs DL launcher packages.
 
 ## Demo
 
-Insert gif or link to demo
-
+![Launcher Product Image](https://raw.githubusercontent.com/aretum-eagleharbor-gfebs/template-launcher-vue/main/public/assets/gfebs_launcher_screenshot.png)
 ## New GFEBS Product
 
 To create a new GFEBS DL Product, install `template-training-content` with [Github CLI](https://cli.github.com/)
