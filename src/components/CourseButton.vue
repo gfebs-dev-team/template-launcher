@@ -15,6 +15,6 @@ defineEmits(['openWindow']) //define function or action
     @click="$emit('openWindow', id, link)"
     :id="{ active: courseName == activeName }"
   >
-    {{ courseName }}
+    <p>{{ id }}. {{ courseName }}</p>
   </button>
 </template>

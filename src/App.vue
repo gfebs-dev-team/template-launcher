@@ -4,8 +4,8 @@ import { SCORM } from 'pipwerks-scorm-api-wrapper'
 import { onMounted, reactive, ref, onBeforeUnmount } from 'vue'
 
 const courseData = {
-  courseCode: 'L210E',
-  courseTitle: 'Financial Process Overview',
+  courseCode: '',
+  courseTitle: 'Launcher Template Overview',
   topic: 'pre-assessment'
 }
 const sessionTime = reactive({

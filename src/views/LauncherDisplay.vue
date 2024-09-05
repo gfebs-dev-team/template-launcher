@@ -8,32 +8,32 @@ defineProps(['courseData'])
 const buttons = [
   {
     id: 1,
-    courseName: '1. INTRODUCTION',
+    courseName: 'introduction',
     link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/2024/L210E/1IntroductionToFinancials/index.html'
   },
   {
     id: 2,
-    courseName: '2. MANAGE GENERAL LEDGER ACCOUNTS',
+    courseName: 'Lorem ipsum dolor',
     link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/2024/L210E/2ManageGeneralLedgerAccounts/index.html'
   },
   {
     id: 3,
-    courseName: '3. PROCESSING JOURNAL VOUCHERS',
+    courseName: 'consectetuer adipiscing elit',
     link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/2024/L210E/3ProcessingJournalVouchers/index.html'
   },
   {
     id: 4,
-    courseName: '4. PERFORM CASH BALANCING',
+    courseName: ' Rutrum quam montes phasellus',
     link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/2024/L210E/4PerformCashBalancing/index.html'
   },
   {
     id: 5,
-    courseName: '5. PERFORM PERIOD-END CLOSE',
+    courseName: 'consectetur euismod eu ullamcorper',
     link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/2024/L210E/5PerformingPeriodEndClose/index.html'
   },
   {
     id: 6,
-    courseName: '6. PERFORM YEAR-END CLOSE',
+    courseName: 'Congue donec primis penatibus',
     link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/2024/L210E/6PerformingYearEndClose/index.html'
   }
 ]
@@ -63,11 +63,13 @@ const buttons = [
           <h2
             class="uppercase text-sm md:text-lg font-bold text-saffron tracking-wider text-balance text-center"
           >
-            GFEBS Essentials Course
+            GFEBS {{ courseData.courseTitle }} Course
           </h2>
           <p class="text-sm text-center text-aliceblue md:text-base">
-            After completing this course, review all the modules and test for the GFEBS L210E
-            Financials Process Overview Post Assessment.
+            After completing this course, review all the modules and test for the GFEBS{{
+              courseData.courseCode ? ` ${courseData.courseCode}` : ''
+            }}
+            {{ courseData.courseTitle }} Post Assessment.
           </p>
           <p class="md:text-sm text-center text-xs font-bold text-coolgrey">
             NOTE: This will launch module content and take you to an external .Mil website.
