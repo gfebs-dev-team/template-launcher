@@ -1,37 +1,67 @@
-# GFEBS_VueJS_Launcher
+# Template: Launcher
 
- A launcher for GFEBS products built with Vue 3 (Composition API), Vite, Volar, and JavaScript.
+![Static Badge](https://img.shields.io/badge/progress-complete-green?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/template-%23fcc603?style=for-the-badge&labelColor=%23fcc603) ![Static Badge](https://img.shields.io/badge/gfebs-%23737373?style=for-the-badge&labelColor=%23fcc603)
 
-This template should help get you started developing with Vue 3 in Vite.
+Internal boilerplate for creating GFEBs DL launcher packages.
 
-## Recommended IDE Setup
+## Demo
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Insert gif or link to demo
 
-## Customize configuration
+## New GFEBS Product
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+To create a new GFEBS DL Product, install `template-training-content` with [Github CLI](https://cli.github.com/)
 
-## Project Setup
+```bash
+gh repo create [COURSE_CODE]-launcher --template="aretum-eagleharbor-gfebs/template-launcher"
 
-```sh
+cd [COURSE_CODE]-launcher
+
+npm i -D
+```
+
+## Contributing
+
+To contribute and make edits to `template-training-content`, clone the project
+
+```bash
+git clone https://github.com/aretum-eagleharbor-gfebs/template-launcher.git
+```
+
+Go to the project directory
+
+```bash
+cd template-launcher
+```
+
+Install dependencies
+
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+Compile and Hot-Reload for Development
 
-```sh
+```bash
 npm run dev
 ```
 
-### Compile and Minify for Production
+Compile and Minify for Production
 
-```sh
+```bash
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## Running Tests
 
-```sh
-npm run lint
+To run tests, run the following command
+
+```bash
+npm run test
 ```
+
+## Tech Stack
+
+**Client:** Vue, Selenium, Sass, TailwindCSS
+
+**Server:** Node
