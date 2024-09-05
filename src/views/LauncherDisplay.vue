@@ -2,7 +2,7 @@
 import CourseButton from '/src/components/CourseButton.vue'
 import AppHeader from '/src/components/AppHeader.vue'
 
-defineEmits(['exit', 'openWindow'])
+defineEmits(['exit', 'openWindow', 'courseData'])
 
 const buttons = [
   {
@@ -40,7 +40,7 @@ const buttons = [
 
 <template>
   <section class="flex h-full md:h-dvh flex-col bg-oxfordblue md:gap-0">
-    <AppHeader :isexit="true" @exit="$emit('exit')"></AppHeader>
+    <AppHeader :isexit="true" @exit="$emit('exit')" :courseData></AppHeader>
     <!--PAGE CONTENT-->
     <div
       class="flex h-full flex-col justify-center gap-6 scroll-auto bg-oxfordblue p-2 md:w-screen md:items-center md:gap-8"

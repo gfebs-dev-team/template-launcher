@@ -3,6 +3,11 @@ import LauncherDisplay from './views/LauncherDisplay.vue'
 import { SCORM } from 'pipwerks-scorm-api-wrapper'
 import { onMounted, reactive, ref, onBeforeUnmount } from 'vue'
 
+const courseData = {
+  courseCode: 'L210E',
+  courseTitle: 'Financial Process Overview',
+  topic: 'pre-assessment'
+}
 const sessionTime = reactive({
   start: 0,
   end: 0
@@ -78,5 +83,5 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <LauncherDisplay @exit="quit(true)" @openWindow="openWindow" />
+  <LauncherDisplay @exit="quit(true)" @openWindow="openWindow" :courseData />
 </template>
