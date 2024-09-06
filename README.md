@@ -56,6 +56,7 @@ cd [COURSE_CODE]-launcher
 npm i -D
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Contributing
 
 To contribute and make edits to `template-training-content`, clone the project
@@ -88,6 +89,7 @@ Compile and Minify for Production
 npm run build
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Running Tests
 
 To run tests, run the following command
