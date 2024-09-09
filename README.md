@@ -44,7 +44,7 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-## Usage
+## Getting Started
 
 To create a new GFEBS DL Product, install `template-training-content` with [Github CLI](https://cli.github.com/)
 
