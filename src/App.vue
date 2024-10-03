@@ -1,12 +1,13 @@
 <script setup>
-import LauncherDisplay from './views/LauncherDisplay.vue'
-import { SCORM } from 'pipwerks-scorm-api-wrapper'
+import CourseButton from './components/CourseButton.vue'
+import AppHeader from './components/AppHeader.vue'
+import { SCORM, debug } from 'pipwerks-scorm-api-wrapper'
 import { onMounted, reactive, ref, onBeforeUnmount } from 'vue'
 
 const courseData = {
   courseCode: '',
-  courseTitle: 'Launcher Template Overview',
-  topic: 'pre-assessment'
+  courseTitle: 'Launcher Template',
+  topic: 'Launcher'
 }
 const sessionTime = reactive({
   start: 0,
@@ -31,18 +32,21 @@ function getSession(time) {
 const terminationEvent = 'onpagehide' in self ? 'pagehide' : 'unload'
 
 onMounted(() => {
+  debug.isActive = false
   SCORM.init()
   setSession('start')
   SCORM.set('cmi.success_status', 'passed')
   window.addEventListener(terminationEvent, quit)
+  // window.addEventListener('message', function (event) {
+  //   location.value = event.data
+  // })
 })
 
-const lastButtonClicked = ref(null)
+const location = ref('')
 
-function openWindow(id, link) {
+function openWindow(link) {
   const windowFeatures = 'resizable=0, width=1024, height=800'
   window.open(link, '_blank', windowFeatures)
-  lastButtonClicked.value = id
 }
 
 const quit = (complete) => {
@@ -61,7 +65,8 @@ const quit = (complete) => {
   SCORM.set('cmi.exit', 'normal')
   SCORM.set('cmi.session_time', session_time)
 
-  SCORM.set('cmi.location', 0)
+  SCORM.set('cmi.location', location.value)
+  // console.log(location.value)
 
   if (SCORM.get('cmi.completion_status') == 'incomplete') {
     SCORM.set('adl.nav.request', 'suspendAll')
@@ -80,8 +85,91 @@ onBeforeUnmount(() => {
   SCORM.set('adl.nav.request', 'suspendAll')
   quit()
 })
+
+const buttons = [
+  {
+    id: 1,
+    courseName: 'introduction',
+    link: 'http://localhost:5174'
+  },
+  {
+    id: 2,
+    courseName: 'Lorem ipsum dolor',
+    link: 'https://stackoverflow.com/questions/6264907/check-if-a-popup-window-is-closed'
+  },
+  {
+    id: 3,
+    courseName: 'consectetuer adipiscing elit',
+    link: 'http://192.168.0.27:5173/'
+  },
+  {
+    id: 4,
+    courseName: ' Rutrum quam montes phasellus',
+    link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/2024/L210E/4PerformCashBalancing/index.html'
+  },
+  {
+    id: 5,
+    courseName: 'consectetur euismod eu ullamcorper',
+    link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/2024/L210E/5PerformingPeriodEndClose/index.html'
+  },
+  {
+    id: 6,
+    courseName: 'Congue donec primis penatibus',
+    link: 'https://ssilrc.army.mil/resources/FMS/GFEBS/2024/L210E/6PerformingYearEndClose/index.html'
+  }
+]
 </script>
 
 <template>
-  <LauncherDisplay @exit="quit(true)" @openWindow="openWindow" :courseData="courseData" />
+  <section class="flex h-full md:h-dvh flex-col bg-oxfordblue md:gap-0">
+    <AppHeader :isexit="true" @exit="quit(true)" :courseData="courseData"></AppHeader>
+    <!--PAGE CONTENT-->
+    <div
+      class="flex h-full flex-col justify-center gap-6 scroll-auto bg-oxfordblue p-2 md:w-screen md:items-center md:gap-8"
+    >
+      <div
+        class="space-y-4 h-full gap-4 md:h-auto p-2 justify-center flex flex-col md:flex-row md:max-w-screen-lg items-center"
+      >
+        <img
+          class="w-1/2 md:h-0 md:min-h-full md:block pt-4 md:p-0"
+          src="/assets/crest.svg"
+          alt="crest"
+        />
+        <div class="flex flex-col items-center justify-center gap-4 md:gap-2 p-4">
+          <h1
+            class="uppercase text-lg md:text-2xl font-bold text-aliceblue tracking-wider text-balance text-center"
+          >
+            Financial Management School
+          </h1>
+          <h2
+            class="uppercase text-sm md:text-lg font-bold text-saffron tracking-wider text-balance text-center"
+          >
+            GFEBS {{ courseData.courseTitle }} Course
+          </h2>
+          <p class="text-sm text-center text-aliceblue md:text-base">
+            After completing this course, review all the modules and test for the GFEBS{{
+              courseData.courseCode ? ` ${courseData.courseCode}` : ''
+            }}
+            {{ courseData.courseTitle }} Post Assessment.
+          </p>
+          <p class="md:text-sm text-center text-xs font-bold text-coolgrey">
+            NOTE: This will launch module content and take you to an external .Mil website.
+          </p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 h-full md:h-auto items-center flex-wrap gap-4">
+        <CourseButton
+          v-for="button in buttons"
+          :className="
+            button.id == 1 || (buttons.length % 2 == 0 && button.id == buttons.length)
+              ? 'md:col-span-2 md:w-1/2 justify-self-center'
+              : ''
+          "
+          :key="button.id"
+          v-bind="button"
+          @openWindow="openWindow(button.link)"
+        />
+      </div>
+    </div>
+  </section>
 </template>
