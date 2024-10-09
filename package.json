@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "host": "vite --host",
-    "build": "vite build && node utils/generateManifest.cjs && node utils/zip.cjs",
+    "build": "vite build && node utils/generateManifest.js && node utils/zip.js",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/"

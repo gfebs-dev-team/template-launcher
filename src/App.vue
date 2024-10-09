@@ -13,6 +13,7 @@ const sessionTime = reactive({
   start: 0,
   end: 0
 })
+
 function setSession(time) {
   if (time == 'start') {
     sessionTime.start = new Date()
@@ -29,24 +30,34 @@ function getSession(time) {
   }
 }
 
-const terminationEvent = 'onpagehide' in self ? 'pagehide' : 'unload'
+let url
 
+const terminationEvent = 'onpagehide' in self ? 'pagehide' : 'unload'
 onMounted(() => {
   debug.isActive = false
+  url = window.location.href
   SCORM.init()
   setSession('start')
   SCORM.set('cmi.success_status', 'passed')
+  console.log(SCORM.get('cmi.location'))
+  if (SCORM.get('cmi.location')) {
+    openWindow(SCORM.get('cmi.location'))
+  }
   window.addEventListener(terminationEvent, quit)
-  // window.addEventListener('message', function (event) {
-  //   location.value = event.data
-  // })
-})
 
-const location = ref('')
+  window.addEventListener('message', function (event) {
+    console.log(event.data)
+    let location = event.data.GFEBS_LOCATION
+    SCORM.set('cmi.location', location)
+  })
+})
 
 function openWindow(link) {
   const windowFeatures = 'resizable=0, width=1024, height=800'
-  window.open(link, '_blank', windowFeatures)
+  const popup = window.open(link, '_blank', windowFeatures)
+  setTimeout(() => {
+    popup.postMessage({ launcher: url }, link)
+  }, 2000)
 }
 
 const quit = (complete) => {
@@ -64,9 +75,6 @@ const quit = (complete) => {
   console.log(session_time)
   SCORM.set('cmi.exit', 'normal')
   SCORM.set('cmi.session_time', session_time)
-
-  SCORM.set('cmi.location', location.value)
-  // console.log(location.value)
 
   if (SCORM.get('cmi.completion_status') == 'incomplete') {
     SCORM.set('adl.nav.request', 'suspendAll')

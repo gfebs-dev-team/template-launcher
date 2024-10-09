@@ -17,9 +17,6 @@
         "$views/*": [
           "src/views/*"
         ],
-        "$types/*": [
-          "src/types/*"
-        ]
       }
     }
   }
