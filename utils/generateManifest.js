@@ -1,12 +1,13 @@
-import scorm from './manifest.json' assert { type: 'json' }
+import config from '/gfebs.config.js'
 import * as fs from 'fs'
 
-const identifier = scorm.general.course_title
+const scorm = config.data
+const identifier = scorm.course.title
   .split(' ')
   .map((n) => n[0])
   .join('')
 const manPath = './dist/imsmanifest.xml'
-const mdPath = scorm.general.course_code + '-metadata.xml'
+const mdPath = scorm.course.code ? scorm.course.code : identifier + '-metadata.xml'
 
 /**
  * A function that generates Army SCORM compliant manifest and metadata files
@@ -45,11 +46,11 @@ function generateManifest() {
     </metadata>
     <organizations default="${identifier}">
         <organization identifier="${identifier}" adlseq:objectivesGlobalToSystem="false">
-            <title>${scorm.general.course_title}</title>
-            <item identifier="${
-              scorm.general.course_code + identifier
-            }" identifierref="${identifier}_SCO">
-                <title>${scorm.general.course_code + ': ' + scorm.general.course_title}</title>
+            <title>${scorm.course.title} - ${scorm.course.topic}</title>
+            <item identifier="${scorm.course.code + identifier}" identifierref="${identifier}_SCO">
+                <title>${scorm.course.code + ': ' + scorm.course.title} - ${
+    scorm.course.topic
+  }</title>
                 <imsss:sequencing>
                     <imsss:controlMode choiceExit="false"/>
                     <imsss:objectives>
@@ -116,7 +117,7 @@ function generateCourseMetadata() {
             <entry>TBD</entry>
         </identifier>
         <title>
-            <string>${scorm.general.course_title}</string>
+            <string>${scorm.course.title} - ${scorm.course.topic}</string>
         </title>
         <language>${scorm.general.language}</language>
         <description>

@@ -3,12 +3,9 @@ import CourseButton from './components/CourseButton.vue'
 import AppHeader from './components/AppHeader.vue'
 import { SCORM, debug } from 'pipwerks-scorm-api-wrapper'
 import { onMounted, reactive, ref, onBeforeUnmount } from 'vue'
+import config from '/gfebs.config.js'
 
-const courseData = {
-  courseCode: '',
-  courseTitle: 'Launcher Template',
-  topic: 'Launcher'
-}
+const courseData = config.data.course
 const sessionTime = reactive({
   start: 0,
   end: 0
