@@ -1,4 +1,4 @@
-import config from '/gfebs.config.js'
+import config from '../gfebs.config.js'
 import * as fs from 'fs'
 
 const scorm = config.data

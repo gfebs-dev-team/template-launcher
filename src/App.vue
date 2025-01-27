@@ -10,6 +10,14 @@ const sessionTime = reactive({
   start: 0,
   end: 0
 })
+const clicked = reactive({
+  1: false,
+  2: false,
+  3: false,
+  4: false,
+  5: false,
+  6: false
+})
 
 function setSession(time) {
   if (time == 'start') {
@@ -31,11 +39,11 @@ let url
 
 const terminationEvent = 'onpagehide' in self ? 'pagehide' : 'unload'
 onMounted(() => {
-  debug.isActive = false
+  debug.isActive = true
   url = window.location.href
   SCORM.init()
   setSession('start')
-  SCORM.set('cmi.success_status', 'passed')
+  SCORM.set('cmi.location', '0')
   console.log(SCORM.get('cmi.location'))
   if (SCORM.get('cmi.location')) {
     openWindow(SCORM.get('cmi.location'))
@@ -49,7 +57,9 @@ onMounted(() => {
   })
 })
 
-function openWindow(link) {
+function openWindow(id, link) {
+  clicked[id] = true
+  console.log(clicked[id])
   const windowFeatures = 'resizable=0, width=1024, height=800'
   const popup = window.open(link, '_blank', windowFeatures)
   setTimeout(() => {
@@ -57,7 +67,7 @@ function openWindow(link) {
   }, 2000)
 }
 
-const quit = (complete) => {
+const quit = () => {
   setSession('end')
   const totalSeconds = (Math.round((getSession('end') - getSession('start')) / 1000) * 100) / 100
   let seconds = totalSeconds % 60
@@ -70,15 +80,29 @@ const quit = (complete) => {
     (minutes > 0 ? minutes + 'M' : '') +
     (seconds > 0 ? seconds + 'S' : '')
   console.log(session_time)
-  SCORM.set('cmi.exit', 'normal')
   SCORM.set('cmi.session_time', session_time)
-
-  if (SCORM.get('cmi.completion_status') == 'incomplete') {
-    SCORM.set('adl.nav.request', 'suspendAll')
+  const completion = ref(true)
+  for (let value in clicked) {
+    console.log(clicked[value])
+    if (clicked[value] == false) {
+      completion.value = false
+    }
   }
-  if (complete) {
+
+  if (!completion.value) {
+    SCORM.set('cmi.completion_status', 'incomplete')
+    SCORM.set('cmi.success_status', 'unknown')
+    SCORM.set('cmi.exit', 'suspend')
+    SCORM.set('adl.nav.request', 'suspendAll')
+    console.log(SCORM.get('cmi.completion_status'))
+    console.log(SCORM.get('cmi.success_status'))
+  } else {
     SCORM.set('cmi.completion_status', 'completed')
+    SCORM.set('cmi.success_status', 'passed')
+    SCORM.set('cmi.exit', 'normal')
     SCORM.set('adl.nav.request', 'exit')
+    console.log(SCORM.get('cmi.completion_status'))
+    console.log(SCORM.get('cmi.success_status'))
   }
 
   SCORM.save()
@@ -127,7 +151,7 @@ const buttons = [
 
 <template>
   <section class="flex h-full md:h-dvh flex-col bg-oxfordblue md:gap-0">
-    <AppHeader :isexit="true" @exit="quit(true)" :courseData="courseData"></AppHeader>
+    <AppHeader :isexit="true" @exit="quit()" :courseData="courseData"></AppHeader>
     <!--PAGE CONTENT-->
     <div
       class="flex h-full flex-col justify-center gap-6 scroll-auto bg-oxfordblue p-2 md:w-screen md:items-center md:gap-8"
@@ -172,7 +196,7 @@ const buttons = [
           "
           :key="button.id"
           v-bind="button"
-          @openWindow="openWindow(button.link)"
+          @openWindow="openWindow(button.id, button.link)"
         />
       </div>
     </div>
