@@ -39,12 +39,12 @@ let url
 
 const terminationEvent = 'onpagehide' in self ? 'pagehide' : 'unload'
 onMounted(() => {
-  debug.isActive = true
+  debug.isActive = false
   url = window.location.href
   SCORM.init()
   setSession('start')
   SCORM.set('cmi.location', '0')
-  console.log(SCORM.get('cmi.location'))
+  /*console.log(SCORM.get('cmi.location'))
   if (SCORM.get('cmi.location')) {
     openWindow(SCORM.get('cmi.location'))
   }
@@ -54,12 +54,11 @@ onMounted(() => {
     console.log(event.data)
     let location = event.data.GFEBS_LOCATION
     SCORM.set('cmi.location', location)
-  })
+  })*/
 })
 
 function openWindow(id, link) {
   clicked[id] = true
-  console.log(clicked[id])
   const windowFeatures = 'resizable=0, width=1024, height=800'
   const popup = window.open(link, '_blank', windowFeatures)
   setTimeout(() => {
@@ -83,7 +82,6 @@ const quit = () => {
   SCORM.set('cmi.session_time', session_time)
   const completion = ref(true)
   for (let value in clicked) {
-    console.log(clicked[value])
     if (clicked[value] == false) {
       completion.value = false
     }
@@ -94,15 +92,11 @@ const quit = () => {
     SCORM.set('cmi.success_status', 'unknown')
     SCORM.set('cmi.exit', 'suspend')
     SCORM.set('adl.nav.request', 'suspendAll')
-    console.log(SCORM.get('cmi.completion_status'))
-    console.log(SCORM.get('cmi.success_status'))
   } else {
     SCORM.set('cmi.completion_status', 'completed')
     SCORM.set('cmi.success_status', 'passed')
     SCORM.set('cmi.exit', 'normal')
     SCORM.set('adl.nav.request', 'exit')
-    console.log(SCORM.get('cmi.completion_status'))
-    console.log(SCORM.get('cmi.success_status'))
   }
 
   SCORM.save()
