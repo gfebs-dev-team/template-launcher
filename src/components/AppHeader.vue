@@ -17,8 +17,8 @@ const emit = defineEmits(['exit'])
         <h1
           class="text-balance text-sm font-bold uppercase text-aliceblue md:text-base xl:max-w-full xl:text-lg"
         >
-          GFEBS {{ courseData.courseCode }}
-          {{ courseData.courseTitle }}
+          GFEBS {{ courseData.code }}
+          {{ courseData.title }}
         </h1>
         <h2 class="text-balance text-sm font-bold uppercase text-saffron xl:inline xl:text-base">
           {{ courseData.topic }}

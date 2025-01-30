@@ -167,13 +167,13 @@ const buttons = [
           <h2
             class="uppercase text-sm md:text-lg font-bold text-saffron tracking-wider text-balance text-center"
           >
-            GFEBS {{ courseData.courseTitle }} Course
+            GFEBS {{ courseData.title }} Course
           </h2>
           <p class="text-sm text-center text-aliceblue md:text-base">
             After completing this course, review all the modules and test for the GFEBS{{
-              courseData.courseCode ? ` ${courseData.courseCode}` : ''
+              courseData.code ? ` ${courseData.code}` : ''
             }}
-            {{ courseData.courseTitle }} Post Assessment.
+            {{ courseData.title }} Post Assessment.
           </p>
           <p class="md:text-sm text-center text-xs font-bold text-coolgrey">
             NOTE: This will launch module content and take you to an external .Mil website.
